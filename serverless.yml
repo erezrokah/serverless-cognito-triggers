@@ -1,0 +1,82 @@
+service: cognito-authentication
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+package:
+  individually: false
+
+plugins:
+  - serverless-bundle
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  poolName: ${self:custom.stage}-user-pool
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sns:*
+      Resource:
+        - "*"
+
+functions:
+  preSignUp:
+    handler: functions/pre-signup.main
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: PreSignUp
+
+  defineAuthChallenge:
+    handler: functions/define-auth-challenge.main
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: DefineAuthChallenge
+
+  createAuthChallenge:
+    handler: functions/create-auth-challenge.main
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: CreateAuthChallenge
+
+  verifyAuthChallengeResponse:
+    handler: functions/verify-auth-challenge-response.main
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: VerifyAuthChallengeResponse
+
+resources:
+  Resources:
+    CognitoUserPoolMyUserPool:
+      Type: "AWS::Cognito::UserPool"
+      Properties:
+        # Generate a name based on the stage
+        UserPoolName: ${self:custom.poolName}
+        # Set phone_number as an alias
+        UsernameAttributes:
+          - phone_number
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 6
+            RequireLowercase: False
+            RequireNumbers: False
+            RequireSymbols: False
+            RequireUppercase: False
+
+    CognitoUserPoolClient:
+      Type: "AWS::Cognito::UserPoolClient"
+      Properties:
+        # Generate an app client name based on the stage
+        ClientName: ${self:custom.stage}-sms-auth-client
+        UserPoolId:
+          Ref: CognitoUserPoolMyUserPool
+        ExplicitAuthFlows:
+          - CUSTOM_AUTH_FLOW_ONLY
+        GenerateSecret: false

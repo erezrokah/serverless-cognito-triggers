@@ -1,0 +1,14 @@
+{
+  "name": "serverless-cognito-triggers",
+  "version": "0.0.1",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erez Rokah",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-bundle": "^1.2.3"
+  }
+}
