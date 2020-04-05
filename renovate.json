@@ -5,10 +5,10 @@
   ],
   "rangeStrategy": "update-lockfile",
   "automerge": true,
-  "major": {
-    "automerge": false
-  },
+  "labels": ["renovate"],
+  "requiredStatusChecks": null,
   "lockFileMaintenance": {
     "enabled": true
-  }
+  },
+  "semanticCommits": true
 }
