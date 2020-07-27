@@ -9,6 +9,6 @@
   "author": "Erez Rokah",
   "license": "MIT",
   "devDependencies": {
-    "serverless-bundle": "^1.2.5"
+    "serverless-bundle": "^2.0.0"
   }
 }
