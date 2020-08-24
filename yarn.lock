@@ -6245,10 +6245,10 @@ serialize-javascript@^4.0.0:
   dependencies:
     randombytes "^2.1.0"
 
-serverless-bundle@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/serverless-bundle/-/serverless-bundle-2.0.0.tgz#df1d0151bc983ad58605d7299fbaecabcecf2cee"
-  integrity sha512-HwXyNLE2yhj/1ORqxQbEC6+P+8wu7jqGKV+OM3YbifTlayL4cqeXL1lPwzOf7+ikaCiS7JVUUWAi3t0HKl2iJA==
+serverless-bundle@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/serverless-bundle/-/serverless-bundle-3.0.0.tgz#5390cc992961689d22930c2afb893434d5bef394"
+  integrity sha512-gM3+/4SLCE/sSHnMDMSQp8jYR7q1xjIVnS0b29Kg+dvjl7rHbayUjNPr97Jr1m1kqT2GozVd79fQVD2yEUdCYw==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-proposal-class-properties" "^7.5.5"
